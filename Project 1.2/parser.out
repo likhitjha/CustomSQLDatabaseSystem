@@ -1,0 +1,1002 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BETWEEN
+    COLUMN_NAME
+    CONCAT
+    EXISTS
+    HAVING
+    IN
+    IS_NULL
+    JOIN
+    LEN
+    LIKE
+    LIMIT
+    LOWER
+    NOT
+    OFFSET
+    SEMICOLON
+    SUBSTRING
+    TABLE_NAME
+    TRIM
+    UPPER
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> select_statement_with_where
+Rule 2     statement -> select_statement_with_order_by
+Rule 3     statement -> select_statement_with_aggregate
+Rule 4     statement -> select_aggregate_without_where_group_by
+Rule 5     statement -> select_aggregate_with_where_group_by
+Rule 6     statement -> select_statement_group_by
+Rule 7     update_statement -> UPDATE table_list SET set_list where_clause
+Rule 8     set_list -> set_expression
+Rule 9     set_list -> set_list COMMA set_expression
+Rule 10    set_expression -> IDENTIFIER EQUALS expression
+Rule 11    where_clause -> MENTIONED condition
+Rule 12    condition -> expression
+Rule 13    condition -> expression AND condition
+Rule 14    condition -> expression OR condition
+Rule 15    expression -> IDENTIFIER EQUALS expression
+Rule 16    expression -> IDENTIFIER NOT_EQUALS expression
+Rule 17    expression -> IDENTIFIER LT expression
+Rule 18    expression -> IDENTIFIER GT expression
+Rule 19    expression -> NUMBER
+Rule 20    expression -> STRING
+Rule 21    order_by_clause -> SORT IDENTIFIER STRAIGHT
+Rule 22    order_by_clause -> SORT IDENTIFIER REVERSE
+Rule 23    aggregate_function -> COUNT LPAREN IDENTIFIER RPAREN
+Rule 24    aggregate_function -> SUM LPAREN IDENTIFIER RPAREN
+Rule 25    aggregate_function -> MEAN LPAREN IDENTIFIER RPAREN
+Rule 26    aggregate_function -> MOST LPAREN IDENTIFIER RPAREN
+Rule 27    aggregate_function -> LEAST LPAREN IDENTIFIER RPAREN
+Rule 28    group_by_clause -> CLUSTER column_list
+Rule 29    select_statement_with_where -> PRESENT column_list THIS table_list where_clause order_by_clause
+Rule 30    select_statement_with_where -> PRESENT column_list THIS table_list where_clause
+Rule 31    select_statement_group_by -> PRESENT column_list THIS table_list group_by_clause
+Rule 32    select_statement_with_order_by -> PRESENT column_list THIS table_list order_by_clause
+Rule 33    select_statement_with_order_by -> PRESENT column_list THIS table_list
+Rule 34    select_statement_with_aggregate -> PRESENT aggregate_function_list THIS table_list where_clause order_by_clause
+Rule 35    select_statement_with_aggregate -> PRESENT aggregate_function_list THIS table_list where_clause
+Rule 36    select_statement_with_aggregate -> PRESENT aggregate_function_list THIS table_list
+Rule 37    select_aggregate_with_where_group_by -> PRESENT aggregate_function_list THIS table_list where_clause group_by_clause order_by_clause
+Rule 38    select_aggregate_with_where_group_by -> PRESENT aggregate_function_list THIS table_list where_clause group_by_clause
+Rule 39    select_aggregate_without_where_group_by -> PRESENT aggregate_function_list THIS table_list group_by_clause order_by_clause
+Rule 40    select_aggregate_without_where_group_by -> PRESENT aggregate_function_list THIS table_list group_by_clause
+Rule 41    aggregate_function_list -> aggregate_function
+Rule 42    aggregate_function_list -> aggregate_function_list COMMA aggregate_function
+Rule 43    column_list -> ASTERISK
+Rule 44    column_list -> IDENTIFIER
+Rule 45    column_list -> column_list COMMA IDENTIFIER
+Rule 46    table_list -> IDENTIFIER
+Rule 47    table_list -> table_list COMMA IDENTIFIER
+
+Terminals, with rules where they appear
+
+AND                  : 13
+ASTERISK             : 43
+BETWEEN              : 
+CLUSTER              : 28
+COLUMN_NAME          : 
+COMMA                : 9 42 45 47
+CONCAT               : 
+COUNT                : 23
+EQUALS               : 10 15
+EXISTS               : 
+GT                   : 18
+HAVING               : 
+IDENTIFIER           : 10 15 16 17 18 21 22 23 24 25 26 27 44 45 46 47
+IN                   : 
+IS_NULL              : 
+JOIN                 : 
+LEAST                : 27
+LEN                  : 
+LIKE                 : 
+LIMIT                : 
+LOWER                : 
+LPAREN               : 23 24 25 26 27
+LT                   : 17
+MEAN                 : 25
+MENTIONED            : 11
+MOST                 : 26
+NOT                  : 
+NOT_EQUALS           : 16
+NUMBER               : 19
+OFFSET               : 
+OR                   : 14
+PRESENT              : 29 30 31 32 33 34 35 36 37 38 39 40
+REVERSE              : 22
+RPAREN               : 23 24 25 26 27
+SEMICOLON            : 
+SET                  : 7
+SORT                 : 21 22
+STRAIGHT             : 21
+STRING               : 20
+SUBSTRING            : 
+SUM                  : 24
+TABLE_NAME           : 
+THIS                 : 29 30 31 32 33 34 35 36 37 38 39 40
+TRIM                 : 
+UPDATE               : 7
+UPPER                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+aggregate_function   : 41 42
+aggregate_function_list : 34 35 36 37 38 39 40 42
+column_list          : 28 29 30 31 32 33 45
+condition            : 11 13 14
+expression           : 10 12 13 14 15 16 17 18
+group_by_clause      : 31 37 38 39 40
+order_by_clause      : 29 32 34 37 39
+select_aggregate_with_where_group_by : 5
+select_aggregate_without_where_group_by : 4
+select_statement_group_by : 6
+select_statement_with_aggregate : 3
+select_statement_with_order_by : 2
+select_statement_with_where : 1
+set_expression       : 8 9
+set_list             : 7 9
+statement            : 0
+table_list           : 7 29 30 31 32 33 34 35 36 37 38 39 40 47
+update_statement     : 
+where_clause         : 7 29 30 34 35 37 38
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . select_statement_with_where
+    (2) statement -> . select_statement_with_order_by
+    (3) statement -> . select_statement_with_aggregate
+    (4) statement -> . select_aggregate_without_where_group_by
+    (5) statement -> . select_aggregate_with_where_group_by
+    (6) statement -> . select_statement_group_by
+    (29) select_statement_with_where -> . PRESENT column_list THIS table_list where_clause order_by_clause
+    (30) select_statement_with_where -> . PRESENT column_list THIS table_list where_clause
+    (32) select_statement_with_order_by -> . PRESENT column_list THIS table_list order_by_clause
+    (33) select_statement_with_order_by -> . PRESENT column_list THIS table_list
+    (34) select_statement_with_aggregate -> . PRESENT aggregate_function_list THIS table_list where_clause order_by_clause
+    (35) select_statement_with_aggregate -> . PRESENT aggregate_function_list THIS table_list where_clause
+    (36) select_statement_with_aggregate -> . PRESENT aggregate_function_list THIS table_list
+    (39) select_aggregate_without_where_group_by -> . PRESENT aggregate_function_list THIS table_list group_by_clause order_by_clause
+    (40) select_aggregate_without_where_group_by -> . PRESENT aggregate_function_list THIS table_list group_by_clause
+    (37) select_aggregate_with_where_group_by -> . PRESENT aggregate_function_list THIS table_list where_clause group_by_clause order_by_clause
+    (38) select_aggregate_with_where_group_by -> . PRESENT aggregate_function_list THIS table_list where_clause group_by_clause
+    (31) select_statement_group_by -> . PRESENT column_list THIS table_list group_by_clause
+
+    PRESENT         shift and go to state 8
+
+    statement                      shift and go to state 1
+    select_statement_with_where    shift and go to state 2
+    select_statement_with_order_by shift and go to state 3
+    select_statement_with_aggregate shift and go to state 4
+    select_aggregate_without_where_group_by shift and go to state 5
+    select_aggregate_with_where_group_by shift and go to state 6
+    select_statement_group_by      shift and go to state 7
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> select_statement_with_where .
+
+    $end            reduce using rule 1 (statement -> select_statement_with_where .)
+
+
+state 3
+
+    (2) statement -> select_statement_with_order_by .
+
+    $end            reduce using rule 2 (statement -> select_statement_with_order_by .)
+
+
+state 4
+
+    (3) statement -> select_statement_with_aggregate .
+
+    $end            reduce using rule 3 (statement -> select_statement_with_aggregate .)
+
+
+state 5
+
+    (4) statement -> select_aggregate_without_where_group_by .
+
+    $end            reduce using rule 4 (statement -> select_aggregate_without_where_group_by .)
+
+
+state 6
+
+    (5) statement -> select_aggregate_with_where_group_by .
+
+    $end            reduce using rule 5 (statement -> select_aggregate_with_where_group_by .)
+
+
+state 7
+
+    (6) statement -> select_statement_group_by .
+
+    $end            reduce using rule 6 (statement -> select_statement_group_by .)
+
+
+state 8
+
+    (29) select_statement_with_where -> PRESENT . column_list THIS table_list where_clause order_by_clause
+    (30) select_statement_with_where -> PRESENT . column_list THIS table_list where_clause
+    (32) select_statement_with_order_by -> PRESENT . column_list THIS table_list order_by_clause
+    (33) select_statement_with_order_by -> PRESENT . column_list THIS table_list
+    (34) select_statement_with_aggregate -> PRESENT . aggregate_function_list THIS table_list where_clause order_by_clause
+    (35) select_statement_with_aggregate -> PRESENT . aggregate_function_list THIS table_list where_clause
+    (36) select_statement_with_aggregate -> PRESENT . aggregate_function_list THIS table_list
+    (39) select_aggregate_without_where_group_by -> PRESENT . aggregate_function_list THIS table_list group_by_clause order_by_clause
+    (40) select_aggregate_without_where_group_by -> PRESENT . aggregate_function_list THIS table_list group_by_clause
+    (37) select_aggregate_with_where_group_by -> PRESENT . aggregate_function_list THIS table_list where_clause group_by_clause order_by_clause
+    (38) select_aggregate_with_where_group_by -> PRESENT . aggregate_function_list THIS table_list where_clause group_by_clause
+    (31) select_statement_group_by -> PRESENT . column_list THIS table_list group_by_clause
+    (43) column_list -> . ASTERISK
+    (44) column_list -> . IDENTIFIER
+    (45) column_list -> . column_list COMMA IDENTIFIER
+    (41) aggregate_function_list -> . aggregate_function
+    (42) aggregate_function_list -> . aggregate_function_list COMMA aggregate_function
+    (23) aggregate_function -> . COUNT LPAREN IDENTIFIER RPAREN
+    (24) aggregate_function -> . SUM LPAREN IDENTIFIER RPAREN
+    (25) aggregate_function -> . MEAN LPAREN IDENTIFIER RPAREN
+    (26) aggregate_function -> . MOST LPAREN IDENTIFIER RPAREN
+    (27) aggregate_function -> . LEAST LPAREN IDENTIFIER RPAREN
+
+    ASTERISK        shift and go to state 11
+    IDENTIFIER      shift and go to state 12
+    COUNT           shift and go to state 14
+    SUM             shift and go to state 15
+    MEAN            shift and go to state 16
+    MOST            shift and go to state 17
+    LEAST           shift and go to state 18
+
+    column_list                    shift and go to state 9
+    aggregate_function_list        shift and go to state 10
+    aggregate_function             shift and go to state 13
+
+state 9
+
+    (29) select_statement_with_where -> PRESENT column_list . THIS table_list where_clause order_by_clause
+    (30) select_statement_with_where -> PRESENT column_list . THIS table_list where_clause
+    (32) select_statement_with_order_by -> PRESENT column_list . THIS table_list order_by_clause
+    (33) select_statement_with_order_by -> PRESENT column_list . THIS table_list
+    (31) select_statement_group_by -> PRESENT column_list . THIS table_list group_by_clause
+    (45) column_list -> column_list . COMMA IDENTIFIER
+
+    THIS            shift and go to state 19
+    COMMA           shift and go to state 20
+
+
+state 10
+
+    (34) select_statement_with_aggregate -> PRESENT aggregate_function_list . THIS table_list where_clause order_by_clause
+    (35) select_statement_with_aggregate -> PRESENT aggregate_function_list . THIS table_list where_clause
+    (36) select_statement_with_aggregate -> PRESENT aggregate_function_list . THIS table_list
+    (39) select_aggregate_without_where_group_by -> PRESENT aggregate_function_list . THIS table_list group_by_clause order_by_clause
+    (40) select_aggregate_without_where_group_by -> PRESENT aggregate_function_list . THIS table_list group_by_clause
+    (37) select_aggregate_with_where_group_by -> PRESENT aggregate_function_list . THIS table_list where_clause group_by_clause order_by_clause
+    (38) select_aggregate_with_where_group_by -> PRESENT aggregate_function_list . THIS table_list where_clause group_by_clause
+    (42) aggregate_function_list -> aggregate_function_list . COMMA aggregate_function
+
+    THIS            shift and go to state 21
+    COMMA           shift and go to state 22
+
+
+state 11
+
+    (43) column_list -> ASTERISK .
+
+    THIS            reduce using rule 43 (column_list -> ASTERISK .)
+    COMMA           reduce using rule 43 (column_list -> ASTERISK .)
+    $end            reduce using rule 43 (column_list -> ASTERISK .)
+    SORT            reduce using rule 43 (column_list -> ASTERISK .)
+
+
+state 12
+
+    (44) column_list -> IDENTIFIER .
+
+    THIS            reduce using rule 44 (column_list -> IDENTIFIER .)
+    COMMA           reduce using rule 44 (column_list -> IDENTIFIER .)
+    $end            reduce using rule 44 (column_list -> IDENTIFIER .)
+    SORT            reduce using rule 44 (column_list -> IDENTIFIER .)
+
+
+state 13
+
+    (41) aggregate_function_list -> aggregate_function .
+
+    THIS            reduce using rule 41 (aggregate_function_list -> aggregate_function .)
+    COMMA           reduce using rule 41 (aggregate_function_list -> aggregate_function .)
+
+
+state 14
+
+    (23) aggregate_function -> COUNT . LPAREN IDENTIFIER RPAREN
+
+    LPAREN          shift and go to state 23
+
+
+state 15
+
+    (24) aggregate_function -> SUM . LPAREN IDENTIFIER RPAREN
+
+    LPAREN          shift and go to state 24
+
+
+state 16
+
+    (25) aggregate_function -> MEAN . LPAREN IDENTIFIER RPAREN
+
+    LPAREN          shift and go to state 25
+
+
+state 17
+
+    (26) aggregate_function -> MOST . LPAREN IDENTIFIER RPAREN
+
+    LPAREN          shift and go to state 26
+
+
+state 18
+
+    (27) aggregate_function -> LEAST . LPAREN IDENTIFIER RPAREN
+
+    LPAREN          shift and go to state 27
+
+
+state 19
+
+    (29) select_statement_with_where -> PRESENT column_list THIS . table_list where_clause order_by_clause
+    (30) select_statement_with_where -> PRESENT column_list THIS . table_list where_clause
+    (32) select_statement_with_order_by -> PRESENT column_list THIS . table_list order_by_clause
+    (33) select_statement_with_order_by -> PRESENT column_list THIS . table_list
+    (31) select_statement_group_by -> PRESENT column_list THIS . table_list group_by_clause
+    (46) table_list -> . IDENTIFIER
+    (47) table_list -> . table_list COMMA IDENTIFIER
+
+    IDENTIFIER      shift and go to state 29
+
+    table_list                     shift and go to state 28
+
+state 20
+
+    (45) column_list -> column_list COMMA . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 30
+
+
+state 21
+
+    (34) select_statement_with_aggregate -> PRESENT aggregate_function_list THIS . table_list where_clause order_by_clause
+    (35) select_statement_with_aggregate -> PRESENT aggregate_function_list THIS . table_list where_clause
+    (36) select_statement_with_aggregate -> PRESENT aggregate_function_list THIS . table_list
+    (39) select_aggregate_without_where_group_by -> PRESENT aggregate_function_list THIS . table_list group_by_clause order_by_clause
+    (40) select_aggregate_without_where_group_by -> PRESENT aggregate_function_list THIS . table_list group_by_clause
+    (37) select_aggregate_with_where_group_by -> PRESENT aggregate_function_list THIS . table_list where_clause group_by_clause order_by_clause
+    (38) select_aggregate_with_where_group_by -> PRESENT aggregate_function_list THIS . table_list where_clause group_by_clause
+    (46) table_list -> . IDENTIFIER
+    (47) table_list -> . table_list COMMA IDENTIFIER
+
+    IDENTIFIER      shift and go to state 29
+
+    table_list                     shift and go to state 31
+
+state 22
+
+    (42) aggregate_function_list -> aggregate_function_list COMMA . aggregate_function
+    (23) aggregate_function -> . COUNT LPAREN IDENTIFIER RPAREN
+    (24) aggregate_function -> . SUM LPAREN IDENTIFIER RPAREN
+    (25) aggregate_function -> . MEAN LPAREN IDENTIFIER RPAREN
+    (26) aggregate_function -> . MOST LPAREN IDENTIFIER RPAREN
+    (27) aggregate_function -> . LEAST LPAREN IDENTIFIER RPAREN
+
+    COUNT           shift and go to state 14
+    SUM             shift and go to state 15
+    MEAN            shift and go to state 16
+    MOST            shift and go to state 17
+    LEAST           shift and go to state 18
+
+    aggregate_function             shift and go to state 32
+
+state 23
+
+    (23) aggregate_function -> COUNT LPAREN . IDENTIFIER RPAREN
+
+    IDENTIFIER      shift and go to state 33
+
+
+state 24
+
+    (24) aggregate_function -> SUM LPAREN . IDENTIFIER RPAREN
+
+    IDENTIFIER      shift and go to state 34
+
+
+state 25
+
+    (25) aggregate_function -> MEAN LPAREN . IDENTIFIER RPAREN
+
+    IDENTIFIER      shift and go to state 35
+
+
+state 26
+
+    (26) aggregate_function -> MOST LPAREN . IDENTIFIER RPAREN
+
+    IDENTIFIER      shift and go to state 36
+
+
+state 27
+
+    (27) aggregate_function -> LEAST LPAREN . IDENTIFIER RPAREN
+
+    IDENTIFIER      shift and go to state 37
+
+
+state 28
+
+    (29) select_statement_with_where -> PRESENT column_list THIS table_list . where_clause order_by_clause
+    (30) select_statement_with_where -> PRESENT column_list THIS table_list . where_clause
+    (32) select_statement_with_order_by -> PRESENT column_list THIS table_list . order_by_clause
+    (33) select_statement_with_order_by -> PRESENT column_list THIS table_list .
+    (31) select_statement_group_by -> PRESENT column_list THIS table_list . group_by_clause
+    (47) table_list -> table_list . COMMA IDENTIFIER
+    (11) where_clause -> . MENTIONED condition
+    (21) order_by_clause -> . SORT IDENTIFIER STRAIGHT
+    (22) order_by_clause -> . SORT IDENTIFIER REVERSE
+    (28) group_by_clause -> . CLUSTER column_list
+
+    $end            reduce using rule 33 (select_statement_with_order_by -> PRESENT column_list THIS table_list .)
+    COMMA           shift and go to state 41
+    MENTIONED       shift and go to state 42
+    SORT            shift and go to state 43
+    CLUSTER         shift and go to state 44
+
+    where_clause                   shift and go to state 38
+    order_by_clause                shift and go to state 39
+    group_by_clause                shift and go to state 40
+
+state 29
+
+    (46) table_list -> IDENTIFIER .
+
+    COMMA           reduce using rule 46 (table_list -> IDENTIFIER .)
+    MENTIONED       reduce using rule 46 (table_list -> IDENTIFIER .)
+    SORT            reduce using rule 46 (table_list -> IDENTIFIER .)
+    CLUSTER         reduce using rule 46 (table_list -> IDENTIFIER .)
+    $end            reduce using rule 46 (table_list -> IDENTIFIER .)
+
+
+state 30
+
+    (45) column_list -> column_list COMMA IDENTIFIER .
+
+    THIS            reduce using rule 45 (column_list -> column_list COMMA IDENTIFIER .)
+    COMMA           reduce using rule 45 (column_list -> column_list COMMA IDENTIFIER .)
+    $end            reduce using rule 45 (column_list -> column_list COMMA IDENTIFIER .)
+    SORT            reduce using rule 45 (column_list -> column_list COMMA IDENTIFIER .)
+
+
+state 31
+
+    (34) select_statement_with_aggregate -> PRESENT aggregate_function_list THIS table_list . where_clause order_by_clause
+    (35) select_statement_with_aggregate -> PRESENT aggregate_function_list THIS table_list . where_clause
+    (36) select_statement_with_aggregate -> PRESENT aggregate_function_list THIS table_list .
+    (39) select_aggregate_without_where_group_by -> PRESENT aggregate_function_list THIS table_list . group_by_clause order_by_clause
+    (40) select_aggregate_without_where_group_by -> PRESENT aggregate_function_list THIS table_list . group_by_clause
+    (37) select_aggregate_with_where_group_by -> PRESENT aggregate_function_list THIS table_list . where_clause group_by_clause order_by_clause
+    (38) select_aggregate_with_where_group_by -> PRESENT aggregate_function_list THIS table_list . where_clause group_by_clause
+    (47) table_list -> table_list . COMMA IDENTIFIER
+    (11) where_clause -> . MENTIONED condition
+    (28) group_by_clause -> . CLUSTER column_list
+
+    $end            reduce using rule 36 (select_statement_with_aggregate -> PRESENT aggregate_function_list THIS table_list .)
+    COMMA           shift and go to state 41
+    MENTIONED       shift and go to state 42
+    CLUSTER         shift and go to state 44
+
+    where_clause                   shift and go to state 45
+    group_by_clause                shift and go to state 46
+
+state 32
+
+    (42) aggregate_function_list -> aggregate_function_list COMMA aggregate_function .
+
+    THIS            reduce using rule 42 (aggregate_function_list -> aggregate_function_list COMMA aggregate_function .)
+    COMMA           reduce using rule 42 (aggregate_function_list -> aggregate_function_list COMMA aggregate_function .)
+
+
+state 33
+
+    (23) aggregate_function -> COUNT LPAREN IDENTIFIER . RPAREN
+
+    RPAREN          shift and go to state 47
+
+
+state 34
+
+    (24) aggregate_function -> SUM LPAREN IDENTIFIER . RPAREN
+
+    RPAREN          shift and go to state 48
+
+
+state 35
+
+    (25) aggregate_function -> MEAN LPAREN IDENTIFIER . RPAREN
+
+    RPAREN          shift and go to state 49
+
+
+state 36
+
+    (26) aggregate_function -> MOST LPAREN IDENTIFIER . RPAREN
+
+    RPAREN          shift and go to state 50
+
+
+state 37
+
+    (27) aggregate_function -> LEAST LPAREN IDENTIFIER . RPAREN
+
+    RPAREN          shift and go to state 51
+
+
+state 38
+
+    (29) select_statement_with_where -> PRESENT column_list THIS table_list where_clause . order_by_clause
+    (30) select_statement_with_where -> PRESENT column_list THIS table_list where_clause .
+    (21) order_by_clause -> . SORT IDENTIFIER STRAIGHT
+    (22) order_by_clause -> . SORT IDENTIFIER REVERSE
+
+    $end            reduce using rule 30 (select_statement_with_where -> PRESENT column_list THIS table_list where_clause .)
+    SORT            shift and go to state 43
+
+    order_by_clause                shift and go to state 52
+
+state 39
+
+    (32) select_statement_with_order_by -> PRESENT column_list THIS table_list order_by_clause .
+
+    $end            reduce using rule 32 (select_statement_with_order_by -> PRESENT column_list THIS table_list order_by_clause .)
+
+
+state 40
+
+    (31) select_statement_group_by -> PRESENT column_list THIS table_list group_by_clause .
+
+    $end            reduce using rule 31 (select_statement_group_by -> PRESENT column_list THIS table_list group_by_clause .)
+
+
+state 41
+
+    (47) table_list -> table_list COMMA . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 53
+
+
+state 42
+
+    (11) where_clause -> MENTIONED . condition
+    (12) condition -> . expression
+    (13) condition -> . expression AND condition
+    (14) condition -> . expression OR condition
+    (15) expression -> . IDENTIFIER EQUALS expression
+    (16) expression -> . IDENTIFIER NOT_EQUALS expression
+    (17) expression -> . IDENTIFIER LT expression
+    (18) expression -> . IDENTIFIER GT expression
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 56
+    NUMBER          shift and go to state 57
+    STRING          shift and go to state 58
+
+    condition                      shift and go to state 54
+    expression                     shift and go to state 55
+
+state 43
+
+    (21) order_by_clause -> SORT . IDENTIFIER STRAIGHT
+    (22) order_by_clause -> SORT . IDENTIFIER REVERSE
+
+    IDENTIFIER      shift and go to state 59
+
+
+state 44
+
+    (28) group_by_clause -> CLUSTER . column_list
+    (43) column_list -> . ASTERISK
+    (44) column_list -> . IDENTIFIER
+    (45) column_list -> . column_list COMMA IDENTIFIER
+
+    ASTERISK        shift and go to state 11
+    IDENTIFIER      shift and go to state 12
+
+    column_list                    shift and go to state 60
+
+state 45
+
+    (34) select_statement_with_aggregate -> PRESENT aggregate_function_list THIS table_list where_clause . order_by_clause
+    (35) select_statement_with_aggregate -> PRESENT aggregate_function_list THIS table_list where_clause .
+    (37) select_aggregate_with_where_group_by -> PRESENT aggregate_function_list THIS table_list where_clause . group_by_clause order_by_clause
+    (38) select_aggregate_with_where_group_by -> PRESENT aggregate_function_list THIS table_list where_clause . group_by_clause
+    (21) order_by_clause -> . SORT IDENTIFIER STRAIGHT
+    (22) order_by_clause -> . SORT IDENTIFIER REVERSE
+    (28) group_by_clause -> . CLUSTER column_list
+
+    $end            reduce using rule 35 (select_statement_with_aggregate -> PRESENT aggregate_function_list THIS table_list where_clause .)
+    SORT            shift and go to state 43
+    CLUSTER         shift and go to state 44
+
+    order_by_clause                shift and go to state 61
+    group_by_clause                shift and go to state 62
+
+state 46
+
+    (39) select_aggregate_without_where_group_by -> PRESENT aggregate_function_list THIS table_list group_by_clause . order_by_clause
+    (40) select_aggregate_without_where_group_by -> PRESENT aggregate_function_list THIS table_list group_by_clause .
+    (21) order_by_clause -> . SORT IDENTIFIER STRAIGHT
+    (22) order_by_clause -> . SORT IDENTIFIER REVERSE
+
+    $end            reduce using rule 40 (select_aggregate_without_where_group_by -> PRESENT aggregate_function_list THIS table_list group_by_clause .)
+    SORT            shift and go to state 43
+
+    order_by_clause                shift and go to state 63
+
+state 47
+
+    (23) aggregate_function -> COUNT LPAREN IDENTIFIER RPAREN .
+
+    THIS            reduce using rule 23 (aggregate_function -> COUNT LPAREN IDENTIFIER RPAREN .)
+    COMMA           reduce using rule 23 (aggregate_function -> COUNT LPAREN IDENTIFIER RPAREN .)
+
+
+state 48
+
+    (24) aggregate_function -> SUM LPAREN IDENTIFIER RPAREN .
+
+    THIS            reduce using rule 24 (aggregate_function -> SUM LPAREN IDENTIFIER RPAREN .)
+    COMMA           reduce using rule 24 (aggregate_function -> SUM LPAREN IDENTIFIER RPAREN .)
+
+
+state 49
+
+    (25) aggregate_function -> MEAN LPAREN IDENTIFIER RPAREN .
+
+    THIS            reduce using rule 25 (aggregate_function -> MEAN LPAREN IDENTIFIER RPAREN .)
+    COMMA           reduce using rule 25 (aggregate_function -> MEAN LPAREN IDENTIFIER RPAREN .)
+
+
+state 50
+
+    (26) aggregate_function -> MOST LPAREN IDENTIFIER RPAREN .
+
+    THIS            reduce using rule 26 (aggregate_function -> MOST LPAREN IDENTIFIER RPAREN .)
+    COMMA           reduce using rule 26 (aggregate_function -> MOST LPAREN IDENTIFIER RPAREN .)
+
+
+state 51
+
+    (27) aggregate_function -> LEAST LPAREN IDENTIFIER RPAREN .
+
+    THIS            reduce using rule 27 (aggregate_function -> LEAST LPAREN IDENTIFIER RPAREN .)
+    COMMA           reduce using rule 27 (aggregate_function -> LEAST LPAREN IDENTIFIER RPAREN .)
+
+
+state 52
+
+    (29) select_statement_with_where -> PRESENT column_list THIS table_list where_clause order_by_clause .
+
+    $end            reduce using rule 29 (select_statement_with_where -> PRESENT column_list THIS table_list where_clause order_by_clause .)
+
+
+state 53
+
+    (47) table_list -> table_list COMMA IDENTIFIER .
+
+    COMMA           reduce using rule 47 (table_list -> table_list COMMA IDENTIFIER .)
+    MENTIONED       reduce using rule 47 (table_list -> table_list COMMA IDENTIFIER .)
+    SORT            reduce using rule 47 (table_list -> table_list COMMA IDENTIFIER .)
+    CLUSTER         reduce using rule 47 (table_list -> table_list COMMA IDENTIFIER .)
+    $end            reduce using rule 47 (table_list -> table_list COMMA IDENTIFIER .)
+
+
+state 54
+
+    (11) where_clause -> MENTIONED condition .
+
+    SORT            reduce using rule 11 (where_clause -> MENTIONED condition .)
+    $end            reduce using rule 11 (where_clause -> MENTIONED condition .)
+    CLUSTER         reduce using rule 11 (where_clause -> MENTIONED condition .)
+
+
+state 55
+
+    (12) condition -> expression .
+    (13) condition -> expression . AND condition
+    (14) condition -> expression . OR condition
+
+    SORT            reduce using rule 12 (condition -> expression .)
+    $end            reduce using rule 12 (condition -> expression .)
+    CLUSTER         reduce using rule 12 (condition -> expression .)
+    AND             shift and go to state 64
+    OR              shift and go to state 65
+
+
+state 56
+
+    (15) expression -> IDENTIFIER . EQUALS expression
+    (16) expression -> IDENTIFIER . NOT_EQUALS expression
+    (17) expression -> IDENTIFIER . LT expression
+    (18) expression -> IDENTIFIER . GT expression
+
+    EQUALS          shift and go to state 66
+    NOT_EQUALS      shift and go to state 67
+    LT              shift and go to state 68
+    GT              shift and go to state 69
+
+
+state 57
+
+    (19) expression -> NUMBER .
+
+    AND             reduce using rule 19 (expression -> NUMBER .)
+    OR              reduce using rule 19 (expression -> NUMBER .)
+    SORT            reduce using rule 19 (expression -> NUMBER .)
+    $end            reduce using rule 19 (expression -> NUMBER .)
+    CLUSTER         reduce using rule 19 (expression -> NUMBER .)
+
+
+state 58
+
+    (20) expression -> STRING .
+
+    AND             reduce using rule 20 (expression -> STRING .)
+    OR              reduce using rule 20 (expression -> STRING .)
+    SORT            reduce using rule 20 (expression -> STRING .)
+    $end            reduce using rule 20 (expression -> STRING .)
+    CLUSTER         reduce using rule 20 (expression -> STRING .)
+
+
+state 59
+
+    (21) order_by_clause -> SORT IDENTIFIER . STRAIGHT
+    (22) order_by_clause -> SORT IDENTIFIER . REVERSE
+
+    STRAIGHT        shift and go to state 70
+    REVERSE         shift and go to state 71
+
+
+state 60
+
+    (28) group_by_clause -> CLUSTER column_list .
+    (45) column_list -> column_list . COMMA IDENTIFIER
+
+    $end            reduce using rule 28 (group_by_clause -> CLUSTER column_list .)
+    SORT            reduce using rule 28 (group_by_clause -> CLUSTER column_list .)
+    COMMA           shift and go to state 20
+
+
+state 61
+
+    (34) select_statement_with_aggregate -> PRESENT aggregate_function_list THIS table_list where_clause order_by_clause .
+
+    $end            reduce using rule 34 (select_statement_with_aggregate -> PRESENT aggregate_function_list THIS table_list where_clause order_by_clause .)
+
+
+state 62
+
+    (37) select_aggregate_with_where_group_by -> PRESENT aggregate_function_list THIS table_list where_clause group_by_clause . order_by_clause
+    (38) select_aggregate_with_where_group_by -> PRESENT aggregate_function_list THIS table_list where_clause group_by_clause .
+    (21) order_by_clause -> . SORT IDENTIFIER STRAIGHT
+    (22) order_by_clause -> . SORT IDENTIFIER REVERSE
+
+    $end            reduce using rule 38 (select_aggregate_with_where_group_by -> PRESENT aggregate_function_list THIS table_list where_clause group_by_clause .)
+    SORT            shift and go to state 43
+
+    order_by_clause                shift and go to state 72
+
+state 63
+
+    (39) select_aggregate_without_where_group_by -> PRESENT aggregate_function_list THIS table_list group_by_clause order_by_clause .
+
+    $end            reduce using rule 39 (select_aggregate_without_where_group_by -> PRESENT aggregate_function_list THIS table_list group_by_clause order_by_clause .)
+
+
+state 64
+
+    (13) condition -> expression AND . condition
+    (12) condition -> . expression
+    (13) condition -> . expression AND condition
+    (14) condition -> . expression OR condition
+    (15) expression -> . IDENTIFIER EQUALS expression
+    (16) expression -> . IDENTIFIER NOT_EQUALS expression
+    (17) expression -> . IDENTIFIER LT expression
+    (18) expression -> . IDENTIFIER GT expression
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 56
+    NUMBER          shift and go to state 57
+    STRING          shift and go to state 58
+
+    expression                     shift and go to state 55
+    condition                      shift and go to state 73
+
+state 65
+
+    (14) condition -> expression OR . condition
+    (12) condition -> . expression
+    (13) condition -> . expression AND condition
+    (14) condition -> . expression OR condition
+    (15) expression -> . IDENTIFIER EQUALS expression
+    (16) expression -> . IDENTIFIER NOT_EQUALS expression
+    (17) expression -> . IDENTIFIER LT expression
+    (18) expression -> . IDENTIFIER GT expression
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 56
+    NUMBER          shift and go to state 57
+    STRING          shift and go to state 58
+
+    expression                     shift and go to state 55
+    condition                      shift and go to state 74
+
+state 66
+
+    (15) expression -> IDENTIFIER EQUALS . expression
+    (15) expression -> . IDENTIFIER EQUALS expression
+    (16) expression -> . IDENTIFIER NOT_EQUALS expression
+    (17) expression -> . IDENTIFIER LT expression
+    (18) expression -> . IDENTIFIER GT expression
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 56
+    NUMBER          shift and go to state 57
+    STRING          shift and go to state 58
+
+    expression                     shift and go to state 75
+
+state 67
+
+    (16) expression -> IDENTIFIER NOT_EQUALS . expression
+    (15) expression -> . IDENTIFIER EQUALS expression
+    (16) expression -> . IDENTIFIER NOT_EQUALS expression
+    (17) expression -> . IDENTIFIER LT expression
+    (18) expression -> . IDENTIFIER GT expression
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 56
+    NUMBER          shift and go to state 57
+    STRING          shift and go to state 58
+
+    expression                     shift and go to state 76
+
+state 68
+
+    (17) expression -> IDENTIFIER LT . expression
+    (15) expression -> . IDENTIFIER EQUALS expression
+    (16) expression -> . IDENTIFIER NOT_EQUALS expression
+    (17) expression -> . IDENTIFIER LT expression
+    (18) expression -> . IDENTIFIER GT expression
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 56
+    NUMBER          shift and go to state 57
+    STRING          shift and go to state 58
+
+    expression                     shift and go to state 77
+
+state 69
+
+    (18) expression -> IDENTIFIER GT . expression
+    (15) expression -> . IDENTIFIER EQUALS expression
+    (16) expression -> . IDENTIFIER NOT_EQUALS expression
+    (17) expression -> . IDENTIFIER LT expression
+    (18) expression -> . IDENTIFIER GT expression
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 56
+    NUMBER          shift and go to state 57
+    STRING          shift and go to state 58
+
+    expression                     shift and go to state 78
+
+state 70
+
+    (21) order_by_clause -> SORT IDENTIFIER STRAIGHT .
+
+    $end            reduce using rule 21 (order_by_clause -> SORT IDENTIFIER STRAIGHT .)
+
+
+state 71
+
+    (22) order_by_clause -> SORT IDENTIFIER REVERSE .
+
+    $end            reduce using rule 22 (order_by_clause -> SORT IDENTIFIER REVERSE .)
+
+
+state 72
+
+    (37) select_aggregate_with_where_group_by -> PRESENT aggregate_function_list THIS table_list where_clause group_by_clause order_by_clause .
+
+    $end            reduce using rule 37 (select_aggregate_with_where_group_by -> PRESENT aggregate_function_list THIS table_list where_clause group_by_clause order_by_clause .)
+
+
+state 73
+
+    (13) condition -> expression AND condition .
+
+    SORT            reduce using rule 13 (condition -> expression AND condition .)
+    $end            reduce using rule 13 (condition -> expression AND condition .)
+    CLUSTER         reduce using rule 13 (condition -> expression AND condition .)
+
+
+state 74
+
+    (14) condition -> expression OR condition .
+
+    SORT            reduce using rule 14 (condition -> expression OR condition .)
+    $end            reduce using rule 14 (condition -> expression OR condition .)
+    CLUSTER         reduce using rule 14 (condition -> expression OR condition .)
+
+
+state 75
+
+    (15) expression -> IDENTIFIER EQUALS expression .
+
+    AND             reduce using rule 15 (expression -> IDENTIFIER EQUALS expression .)
+    OR              reduce using rule 15 (expression -> IDENTIFIER EQUALS expression .)
+    SORT            reduce using rule 15 (expression -> IDENTIFIER EQUALS expression .)
+    $end            reduce using rule 15 (expression -> IDENTIFIER EQUALS expression .)
+    CLUSTER         reduce using rule 15 (expression -> IDENTIFIER EQUALS expression .)
+
+
+state 76
+
+    (16) expression -> IDENTIFIER NOT_EQUALS expression .
+
+    AND             reduce using rule 16 (expression -> IDENTIFIER NOT_EQUALS expression .)
+    OR              reduce using rule 16 (expression -> IDENTIFIER NOT_EQUALS expression .)
+    SORT            reduce using rule 16 (expression -> IDENTIFIER NOT_EQUALS expression .)
+    $end            reduce using rule 16 (expression -> IDENTIFIER NOT_EQUALS expression .)
+    CLUSTER         reduce using rule 16 (expression -> IDENTIFIER NOT_EQUALS expression .)
+
+
+state 77
+
+    (17) expression -> IDENTIFIER LT expression .
+
+    AND             reduce using rule 17 (expression -> IDENTIFIER LT expression .)
+    OR              reduce using rule 17 (expression -> IDENTIFIER LT expression .)
+    SORT            reduce using rule 17 (expression -> IDENTIFIER LT expression .)
+    $end            reduce using rule 17 (expression -> IDENTIFIER LT expression .)
+    CLUSTER         reduce using rule 17 (expression -> IDENTIFIER LT expression .)
+
+
+state 78
+
+    (18) expression -> IDENTIFIER GT expression .
+
+    AND             reduce using rule 18 (expression -> IDENTIFIER GT expression .)
+    OR              reduce using rule 18 (expression -> IDENTIFIER GT expression .)
+    SORT            reduce using rule 18 (expression -> IDENTIFIER GT expression .)
+    $end            reduce using rule 18 (expression -> IDENTIFIER GT expression .)
+    CLUSTER         reduce using rule 18 (expression -> IDENTIFIER GT expression .)
+
